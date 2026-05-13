@@ -31,22 +31,14 @@ El objetivo del proyecto fue adaptar un diseño de referencia (EVB) hacia una so
 
 ## Tabla de Contenido
 1. [Descripción general](#descripción-general)
-2. [Imágenes del proyecto](#imágenes-del-proyecto)
-3. [Concepto 3D](#concepto-3d)
-4. [Chip PCIe principal](#chip-pcie-principal)
-5. [Objetivos del proyecto](#objetivos-del-proyecto)
-6. [Arquitectura general](#arquitectura-general)
-7. [Bloques principales del diseño](#bloques-principales-del-diseño)
-8. [Filosofía de diseño](#filosofía-de-diseño)
-9. [Herramientas utilizadas](#herramientas-utilizadas)
-10. [Estado actual](#estado-actual)
-11. [Notas](#notas)
-
-## Imágenes del proyecto
-*(No incluidas en esta versión)*
-
-## Concepto 3D
-*(No incluido en esta versión)*
+2. [Chip PCIe principal](#chip-pcie-principal)
+3. [Objetivos del proyecto](#objetivos-del-proyecto)
+4. [Arquitectura general](#arquitectura-general)
+5. [Bloques principales del diseño](#bloques-principales-del-diseño)
+6. [Filosofía de diseño](#filosofía-de-diseño)
+7. [Herramientas utilizadas](#herramientas-utilizadas)
+8. [Estado actual](#estado-actual)
+9. [Notas](#notas)
 
 ## Chip PCIe principal
 El diseño está basado en el **PCI11400**, un controlador orientado a aplicaciones PCIe con soporte para múltiples interfaces. En este proyecto se utiliza como puente para conectar:
@@ -81,117 +73,84 @@ El diseño está basado en el **PCI11400**, un controlador orientado a aplicacio
    |       |       |
    |       |       |
   USB     SATA    M.2
+
 El chip PCI11400 actúa como puente entre el host PCIe y múltiples interfaces de salida.
 
 Bloques principales del diseño
 1. Interfaz PCIe upstream
 Conexión principal hacia el host mediante pares diferenciales TX/RX, reloj y señales de control.
+
 2. Núcleo PCI11400
 Componente central encargado de gestionar la comunicación entre interfaces.
+
 3. Interfaces downstream
 Incluyen conexiones hacia:
 
-
 USB (no completado)
-
 
 SATA (parcial)
 
-
 M.2 (parcial)
-
 
 4. Arquitectura de potencia
 Distribución de voltajes necesarios con regulación simplificada respecto al EVB.
+
 5. Señales auxiliares
-
-
 PERST#
-
 
 CLK
 
-
 WAKE#
 
-
 PRSNT#
-
-
 
 Filosofía de diseño
 El proyecto sigue el diseño de referencia EVB, pero enfocado en simplificación:
 
+Eliminación total de UART.
 
-Eliminación total de UART
+Reducción de interfaces innecesarias.
 
+Menor complejidad de ruteo.
 
-Reducción de interfaces innecesarias
-
-
-Menor complejidad de ruteo
-
-
-Enfoque en aprendizaje práctico
-
-
+Enfoque en aprendizaje práctico.
 
 Herramientas utilizadas
-
-
 Cadence OrCAD Capture
-
 
 Cadence Allegro PCB Editor
 
-
 Datasheets del PCI11400
 
-
 Documentación EVB
-
-
 
 Estado actual
 El proyecto alcanzó aproximadamente un:
 ➡️ 60% – 70% de desarrollo
+
 Debido a dificultades durante el proceso:
 
+❌ No se completó la implementación de PCIe.
 
- No se completó la implementación de PCIe
+❌ No se finalizó la integración USB.
 
- No se finalizó la integración USB
-
-
-Interfaces SATA y M.2 quedaron parciales
-
+⚠️ Interfaces SATA y M.2 quedaron parciales.
 
 Sin embargo, se logró:
 
+Aplicar buenas prácticas de diseño.
 
-Aplicar buenas prácticas de diseño
+Comprender la arquitectura PCIe.
 
-
-Comprender la arquitectura PCIe
-
-
-Desarrollar una base sólida del sistema
-
-
+Desarrollar una base sólida del sistema.
 
 Notas
 Este proyecto es de carácter académico. Antes de una implementación real se deben validar:
 
-
 Señales de alta velocidad
-
 
 Integridad de potencia
 
-
 Ruteo diferencial
 
-
 Configuración completa del PCIe
-
-
