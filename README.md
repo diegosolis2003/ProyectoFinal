@@ -74,6 +74,9 @@ El diseño está basado en el **PCI11400**, un controlador orientado a aplicacio
    |       |       |
   USB     SATA    M.2
 
+
+
+
 El chip PCI11400 actúa como puente entre el host PCIe y múltiples interfaces de salida.
 
 Bloques principales del diseño
