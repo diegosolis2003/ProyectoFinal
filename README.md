@@ -77,82 +77,52 @@ El diseño está basado en el **PCI11400**, un controlador orientado a aplicacio
 ```
 
 
-El chip PCI11400 actúa como puente entre el host PCIe y múltiples interfaces de salida.
+*El chip PCI11400 actúa como puente entre el host PCIe y múltiples interfaces de salida.*
 
-Bloques principales del diseño
-1. Interfaz PCIe upstream
-Conexión principal hacia el host mediante pares diferenciales TX/RX, reloj y señales de control.
+## Bloques principales del diseño
 
-2. Núcleo PCI11400
-Componente central encargado de gestionar la comunicación entre interfaces.
+* **Interfaz PCIe upstream:** Conexión principal hacia el host mediante pares diferenciales TX/RX, reloj y señales de control.
+* **Núcleo PCI11400:** Componente central encargado de gestionar la comunicación entre interfaces.
+* **Interfaces downstream:** Incluyen conexiones hacia:
+  * USB (no completado)
+  * SATA (parcial)
+  * M.2 (parcial)
+* **Arquitectura de potencia:** Distribución de voltajes necesarios con regulación simplificada respecto al EVB.
+* **Señales auxiliares:**
+  * `PERST#`
+  * `CLK`
+  * `WAKE#`
+  * `PRSNT#`
 
-3. Interfaces downstream
-Incluyen conexiones hacia:
-
-USB (no completado)
-
-SATA (parcial)
-
-M.2 (parcial)
-
-4. Arquitectura de potencia
-Distribución de voltajes necesarios con regulación simplificada respecto al EVB.
-
-5. Señales auxiliares
-PERST#
-
-CLK
-
-WAKE#
-
-PRSNT#
-
-Filosofía de diseño
+## Filosofía de diseño
 El proyecto sigue el diseño de referencia EVB, pero enfocado en simplificación:
+* Eliminación total de UART.
+* Reducción de interfaces innecesarias.
+* Menor complejidad de ruteo.
+* Enfoque en aprendizaje práctico.
 
-Eliminación total de UART.
+## Herramientas utilizadas
+* Capture CIS de OrCAD
+* OrCAD Allegro
+* Datasheets del PCI11400
+* Documentación EVB
 
-Reducción de interfaces innecesarias.
-
-Menor complejidad de ruteo.
-
-Enfoque en aprendizaje práctico.
-
-Herramientas utilizadas
-Capture CIS de OrCAD
-
-OrCAD Allegro
-
-Datasheets del PCI11400
-
-Documentación EVB
-
-Estado actual
-El proyecto alcanzó aproximadamente un 60% – 70% de desarrollo.
+## Estado actual
+El proyecto alcanzó aproximadamente un **60% – 70% de desarrollo**.
 
 Debido a dificultades durante el proceso:
-
-No se completó la implementación de PCIe.
-
-No se finalizó la integración USB.
-
-Interfaces SATA y M.2 quedaron parciales.
+* No se completó la implementación de PCIe.
+* No se finalizó la integración USB.
+* Interfaces SATA y M.2 quedaron parciales.
 
 Sin embargo, se logró:
+* Aplicar buenas prácticas de diseño.
+* Comprender la arquitectura PCIe.
+* Desarrollar una base sólida del sistema.
 
-Aplicar buenas prácticas de diseño.
-
-Comprender la arquitectura PCIe.
-
-Desarrollar una base sólida del sistema.
-
-Notas
+## Notas
 Este proyecto es de carácter académico. Antes de una implementación real se deben validar:
-
-Señales de alta velocidad
-
-Integridad de potencia
-
-Ruteo diferencial
-
-Configuración completa del PCIe
+* Señales de alta velocidad
+* Integridad de potencia
+* Ruteo diferencial
+* Configuración completa del PCIe
