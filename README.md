@@ -1,54 +1,197 @@
-README – Proyecto PCI11400
+# Proyecto Final de Electrónica 2 y Diseño Electrónico 1 - PCIe to USB & SATA / M.2 Bridge
 
-Este proyecto se basa en el análisis y adaptación del diseño de referencia EVB-PCI11400 para su uso con el PCI-11400, enfocándose en simplificar la arquitectura y aplicar buenas prácticas de diseño electrónico.
+<p align="center">
+  <img src="PNG/Escudo-UNIS.png" alt="Escudo de la Universidad" width="200">
+</p>
+<p align="center">
+  <em>Universidad del Istmo de Guatemala</em><br>
+  <em>Facultad de Ingeniería</em><br>
+  <em>Proyecto Final</em><br>
+  <em>Electrónica 2 y Diseño Electrónico 1</em>
+</p>
+<p align="center">
+  <em>Diego Fernando Solís López</em><br>
+  <em>mayo de 2026</em>
+</p>
 
-Diseño original (EVB)
+---
 
-El diseño de referencia incluye:
+## Descripción general
+Este repositorio documenta el diseño de una tarjeta basada en PCIe to USB & Bridge a SATA y M.2, utilizando el chip **PCI11400** como núcleo principal. 
 
-PCIe x4 + x1
-Interfaces múltiples: USB, UART, RS232/RS422/RS485
-EEPROM (AT24C64)
-Generación de reloj dedicada
-Regulación multietapa (12V → 1.1V)
+El objetivo del proyecto fue adaptar un diseño de referencia (EVB) hacia una solución funcional que permitiera la conversión e interconexión entre PCIe y diferentes interfaces. Durante el desarrollo se trabajó en:
 
-Se trata de una placa de evaluación completa, pensada para cubrir todos los casos de uso.
+* Captura esquemática
+* Planeación de señales PCIe
+* Arquitectura de potencia
+* Manejo de señales auxiliares (reset, clock, presence)
+* Consideraciones de diseño de alta velocidad
 
-Implementación propia
+⚠️ **Es importante notar que el diseño no fue completado en su totalidad**, especialmente en la implementación completa de PCIe y USB.
 
-En el desarrollo del proyecto:
+## Tabla de Contenido
+1. [Descripción general](#descripción-general)
+2. [Imágenes del proyecto](#imágenes-del-proyecto)
+3. [Concepto 3D](#concepto-3d)
+4. [Chip PCIe principal](#chip-pcie-principal)
+5. [Objetivos del proyecto](#objetivos-del-proyecto)
+6. [Arquitectura general](#arquitectura-general)
+7. [Bloques principales del diseño](#bloques-principales-del-diseño)
+8. [Filosofía de diseño](#filosofía-de-diseño)
+9. [Herramientas utilizadas](#herramientas-utilizadas)
+10. [Estado actual](#estado-actual)
+11. [Notas](#notas)
 
-Se simplificó el uso de PCIe (enfoque en configuración básica)
-Se eliminaron interfaces no esenciales
-No se implementó ningún módulo UART
-Se redujo la complejidad en clock y regulación
+## Imágenes del proyecto
+*(No incluidas en esta versión)*
 
-Sin embargo:
+## Concepto 3D
+*(No incluido en esta versión)*
 
-El proyecto no fue completado en su totalidad, ya que quedaron pendientes:
+## Chip PCIe principal
+El diseño está basado en el **PCI11400**, un controlador orientado a aplicaciones PCIe con soporte para múltiples interfaces. En este proyecto se utiliza como puente para conectar:
 
-Partes del diseño PCIe (integración completa y validación)
-Implementación de interfaces USB
+* PCIe ↔ USB
+* PCIe ↔ SATA
+* PCIe ↔ M.2
 
-Avance del proyecto
+**Características consideradas:**
+* Manejo de enlaces PCIe
+* Soporte para múltiples interfaces downstream
+* Configuración mediante señales de control
+* Integración con buses auxiliares
 
-Debido a las dificultades encontradas durante el desarrollo, el proyecto alcanza aproximadamente:
+## Objetivos del proyecto
+* Diseñar una tarjeta basada en PCIe capaz de interactuar con USB, SATA y M.2.
+* Adaptar el diseño EVB del PCI11400.
+* Simplificar el sistema eliminando módulos no necesarios.
+* Aplicar buenas prácticas de diseño.
+* Desarrollar una PCB funcional en OrCAD/Allegro.
 
- 60% – 70% de implementación total
+## Arquitectura general
 
-A pesar de no haberse finalizado completamente, se logró:
+```text
+       Host PCIe
+           |
+           | PCIe
+           |
++----------------------+
+|      PCI11400        |
++----------------------+
+   |       |       |
+   |       |       |
+  USB     SATA    M.2
+El chip PCI11400 actúa como puente entre el host PCIe y múltiples interfaces de salida.
+
+Bloques principales del diseño
+1. Interfaz PCIe upstream
+Conexión principal hacia el host mediante pares diferenciales TX/RX, reloj y señales de control.
+2. Núcleo PCI11400
+Componente central encargado de gestionar la comunicación entre interfaces.
+3. Interfaces downstream
+Incluyen conexiones hacia:
+
+
+USB (no completado)
+
+
+SATA (parcial)
+
+
+M.2 (parcial)
+
+
+4. Arquitectura de potencia
+Distribución de voltajes necesarios con regulación simplificada respecto al EVB.
+5. Señales auxiliares
+
+
+PERST#
+
+
+CLK
+
+
+WAKE#
+
+
+PRSNT#
+
+
+
+Filosofía de diseño
+El proyecto sigue el diseño de referencia EVB, pero enfocado en simplificación:
+
+
+Eliminación total de UART
+
+
+Reducción de interfaces innecesarias
+
+
+Menor complejidad de ruteo
+
+
+Enfoque en aprendizaje práctico
+
+
+
+Herramientas utilizadas
+
+
+Cadence OrCAD Capture
+
+
+Cadence Allegro PCB Editor
+
+
+Datasheets del PCI11400
+
+
+Documentación EVB
+
+
+
+Estado actual
+El proyecto alcanzó aproximadamente un:
+➡️ 60% – 70% de desarrollo
+Debido a dificultades durante el proceso:
+
+
+ No se completó la implementación de PCIe
+
+ No se finalizó la integración USB
+
+
+Interfaces SATA y M.2 quedaron parciales
+
+
+Sin embargo, se logró:
+
 
 Aplicar buenas prácticas de diseño
-Comprender la arquitectura del sistema PCIe
-Realizar una adaptación funcional del esquema original
-Comparativa
 
-Característica	EVB Original	Diseño propio
-PCIe	x4 + x1	Parcial / simplificado
-USB	Completo	❌ No implementado
-UART	Incluido	❌ No utilizado
-Interfaces	Muchas	Reducidas
-Estado	Completo	Parcial
-🧠 Conclusión
 
-El EVB-PCI11400 representa un diseño completo y robusto, mientras que este proyecto constituye una implementación parcial optimizada, donde, a pesar de no haberse finalizado, se logró extraer
+Comprender la arquitectura PCIe
+
+
+Desarrollar una base sólida del sistema
+
+
+
+Notas
+Este proyecto es de carácter académico. Antes de una implementación real se deben validar:
+
+
+Señales de alta velocidad
+
+
+Integridad de potencia
+
+
+Ruteo diferencial
+
+
+Configuración completa del PCIe
+
+
