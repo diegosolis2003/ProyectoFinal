@@ -27,7 +27,7 @@ El objetivo del proyecto fue adaptar un diseño de referencia (EVB) hacia una so
 * Manejo de señales auxiliares (reset, clock, presence)
 * Consideraciones de diseño de alta velocidad
 
-⚠️ **Es importante notar que el diseño no fue completado en su totalidad**, especialmente en la implementación completa de PCIe y USB.
+**Es importante notar que el diseño no fue completado en su totalidad**, especialmente en la implementación completa de PCIe y USB.
 
 ## Tabla de Contenido
 1. [Descripción general](#descripción-general)
@@ -58,7 +58,7 @@ El diseño está basado en el **PCI11400**, un controlador orientado a aplicacio
 * Adaptar el diseño EVB del PCI11400.
 * Simplificar el sistema eliminando módulos no necesarios.
 * Aplicar buenas prácticas de diseño.
-* Desarrollar una PCB funcional en OrCAD/Allegro.
+* Desarrollar una PCB funcional.
 
 ## Arquitectura general
 
@@ -116,25 +116,24 @@ Menor complejidad de ruteo.
 Enfoque en aprendizaje práctico.
 
 Herramientas utilizadas
-Cadence OrCAD Capture
+Capture CIS de OrCAD
 
-Cadence Allegro PCB Editor
+OrCAD Allegro
 
 Datasheets del PCI11400
 
 Documentación EVB
 
 Estado actual
-El proyecto alcanzó aproximadamente un:
-➡️ 60% – 70% de desarrollo
+El proyecto alcanzó aproximadamente un 60% – 70% de desarrollo.
 
 Debido a dificultades durante el proceso:
 
-❌ No se completó la implementación de PCIe.
+No se completó la implementación de PCIe.
 
-❌ No se finalizó la integración USB.
+No se finalizó la integración USB.
 
-⚠️ Interfaces SATA y M.2 quedaron parciales.
+Interfaces SATA y M.2 quedaron parciales.
 
 Sin embargo, se logró:
 
